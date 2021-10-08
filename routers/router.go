@@ -50,19 +50,24 @@ func init() {
 	//自动匹配
 	// web.AutoRouter(&controllers.TestContrller{})
 	//注解路由
-	web.Include(&controllers.TestContrller{})
+	// web.Include(&controllers.TestContrller{})
+	//方法表达式路由
+	// web.CtrlGet("/ping", &controllers.TestContrller{}.Ping)
+	//命名空间
+	ns := web.NewNamespace("/v1",
+		web.NSNamespace("/object",
+			web.NSInclude(
+				&controllers.ObjectController{},
+			),
+		),
+		web.NSNamespace("/user",
+			web.NSInclude(
+				&controllers.UserController{},
+			),
+		),
+	)
+	web.AddNamespace(ns)
 
-	// ns := beego.NewNamespace("/v1",
-	// 	beego.NSNamespace("/object",
-	// 		beego.NSInclude(
-	// 			&controllers.ObjectController{},
-	// 		),
-	// 	),
-	// 	beego.NSNamespace("/user",
-	// 		beego.NSInclude(
-	// 			&controllers.UserController{},
-	// 		),
-	// 	),
-	// )
-	// beego.AddNamespace(ns)
+	//form参数解析
+	web.Router("form", &controllers.FormControllers{})
 }

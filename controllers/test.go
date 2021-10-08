@@ -27,3 +27,9 @@ func (t *TestContrller) Test() {
 func (t *TestContrller) Zhujie() {
 	t.Ctx.WriteString("注解路由")
 }
+
+//方法表达式路由
+func (t *TestContrller) Ping() {
+	t.Data["json"] = "pong"
+	t.ServeJSON()
+}
