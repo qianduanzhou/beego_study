@@ -69,5 +69,7 @@ func init() {
 	web.AddNamespace(ns)
 
 	//form参数解析
-	web.Router("form", &controllers.FormControllers{})
+	web.Router("/parseForm", &controllers.FormControllers{})
+	//下载文件
+	web.AddNamespace(web.NewNamespace("/file", web.NSInclude(&controllers.FileController{})))
 }

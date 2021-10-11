@@ -1,8 +1,8 @@
 package models
 
 type Form struct {
-	name string `form:"username"`
-	age  int    `form:"age"`
+	Name string `form:"username"`
+	Age  int    `form:"age"`
 }
 
 func GetForm(name string, age int) (f *Form) {

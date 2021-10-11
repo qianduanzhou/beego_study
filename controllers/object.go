@@ -3,6 +3,7 @@ package controllers
 import (
 	"beego_study/models"
 	"encoding/json"
+	"fmt"
 
 	beego "github.com/beego/beego/v2/server/web"
 )
@@ -20,7 +21,9 @@ type ObjectController struct {
 // @router / [post]
 func (o *ObjectController) Post() {
 	var ob models.Object
+	fmt.Println(string(o.Ctx.Input.RequestBody))
 	json.Unmarshal(o.Ctx.Input.RequestBody, &ob)
+	fmt.Println(ob)
 	objectid := models.AddOne(ob)
 	o.Data["json"] = map[string]string{"ObjectId": objectid}
 	o.ServeJSON()
@@ -89,4 +92,3 @@ func (o *ObjectController) Delete() {
 	o.Data["json"] = "delete success!"
 	o.ServeJSON()
 }
-

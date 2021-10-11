@@ -13,7 +13,7 @@ type UserController struct {
 }
 
 // @Title CreateUser
-// @Description create users
+// @Description create users  u.Ctx.Input.RequestBody获取raw中的内容，json.Unmarshal解析raw中的json格式数据并赋值到user
 // @Param	body		body 	models.User	true		"body for user content"
 // @Success 200 {int} models.User.Id
 // @Failure 403 body is empty
@@ -116,4 +116,3 @@ func (u *UserController) Logout() {
 	u.Data["json"] = "logout success"
 	u.ServeJSON()
 }
-

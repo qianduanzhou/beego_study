@@ -7,6 +7,15 @@ import (
 
 func init() {
 
+    beego.GlobalControllerRouter["beego_study/controllers:FileController"] = append(beego.GlobalControllerRouter["beego_study/controllers:FileController"],
+        beego.ControllerComments{
+            Method: "Post",
+            Router: "/downFile",
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
     beego.GlobalControllerRouter["beego_study/controllers:ObjectController"] = append(beego.GlobalControllerRouter["beego_study/controllers:ObjectController"],
         beego.ControllerComments{
             Method: "Post",
