@@ -33,3 +33,16 @@ func (t *TestContrller) Ping() {
 	t.Data["json"] = "pong"
 	t.ServeJSON()
 }
+
+//session
+func (t *TestContrller) GetSess() {
+	fmt.Println("GetSess")
+	v := t.GetSession("asta")
+	if v == nil {
+		t.SetSession("asta", int(1))
+		t.Ctx.WriteString("SetSess")
+	} else {
+		t.SetSession("asta", v.(int)+1)
+		t.Ctx.WriteString("GetSess")
+	}
+}

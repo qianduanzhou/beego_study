@@ -116,3 +116,7 @@ func (u *UserController) Logout() {
 	u.Data["json"] = "logout success"
 	u.ServeJSON()
 }
+
+// @Title Valid
+// @Description 表单验证
+// @router /valid [post]

@@ -4,6 +4,7 @@ import (
 	"beego_study/models"
 	"fmt"
 
+	"github.com/astaxie/beego/validation"
 	"github.com/beego/beego/v2/server/web"
 )
 
@@ -18,7 +19,6 @@ func (f *FormControllers) Post() {
 		//handle error
 		fmt.Println(err)
 	}
-	fmt.Println(form)
 	f.Data["json"] = form
 	f.ServeJSON()
 
@@ -26,4 +26,18 @@ func (f *FormControllers) Post() {
 	var age int
 	f.Ctx.Input.Bind(&age, "age")
 	fmt.Println(age)
+
+	//表单验证
+	valid := validation.Validation{}
+	b, err := valid.Valid(&form)
+	if err != nil {
+		// handle error
+	}
+	if !b {
+		for _, err := range valid.Errors {
+			fmt.Println(err.Key, err.Message)
+		}
+	}
+	fmt.Println(form)
+
 }

@@ -9,6 +9,7 @@ package routers
 
 import (
 	"beego_study/controllers"
+	"fmt"
 
 	web "github.com/beego/beego/v2/server/web"
 	"github.com/beego/beego/v2/server/web/context"
@@ -72,4 +73,17 @@ func init() {
 	web.Router("/parseForm", &controllers.FormControllers{})
 	//下载文件
 	web.AddNamespace(web.NewNamespace("/file", web.NSInclude(&controllers.FileController{})))
+
+	//session
+	web.Router("/getSession", &controllers.TestContrller{}, "get:GetSess")
+
+	//过滤器
+	var FilterUser = func(ctx *context.Context) {
+		_, ok := ctx.Input.Session("uid").(int)
+		fmt.Println(ok)
+		if !ok && ctx.Request.RequestURI != "/login" {
+			ctx.Redirect(302, "/login")
+		}
+	}
+	web.InsertFilter("/index", web.BeforeRouter, FilterUser)
 }
