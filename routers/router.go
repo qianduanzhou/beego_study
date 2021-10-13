@@ -86,4 +86,7 @@ func init() {
 		}
 	}
 	web.InsertFilter("/index", web.BeforeRouter, FilterUser)
+
+	//数据库操作
+	web.AddNamespace(web.NewNamespace("/dbuser", web.NSInclude(&controllers.DbuserController{})))
 }

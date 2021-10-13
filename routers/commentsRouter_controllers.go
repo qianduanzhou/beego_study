@@ -7,6 +7,42 @@ import (
 
 func init() {
 
+    beego.GlobalControllerRouter["beego_study/controllers:DbuserController"] = append(beego.GlobalControllerRouter["beego_study/controllers:DbuserController"],
+        beego.ControllerComments{
+            Method: "Delete",
+            Router: "/delete",
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["beego_study/controllers:DbuserController"] = append(beego.GlobalControllerRouter["beego_study/controllers:DbuserController"],
+        beego.ControllerComments{
+            Method: "Insert",
+            Router: "/insert",
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["beego_study/controllers:DbuserController"] = append(beego.GlobalControllerRouter["beego_study/controllers:DbuserController"],
+        beego.ControllerComments{
+            Method: "Search",
+            Router: "/search",
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["beego_study/controllers:DbuserController"] = append(beego.GlobalControllerRouter["beego_study/controllers:DbuserController"],
+        beego.ControllerComments{
+            Method: "Update",
+            Router: "/update",
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
     beego.GlobalControllerRouter["beego_study/controllers:FileController"] = append(beego.GlobalControllerRouter["beego_study/controllers:FileController"],
         beego.ControllerComments{
             Method: "Post",
