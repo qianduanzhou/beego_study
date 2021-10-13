@@ -5,7 +5,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/astaxie/beego/orm"
+	"github.com/beego/beego/v2/client/orm"
 )
 
 type DbuserController struct {
@@ -22,7 +22,6 @@ func (dbuser *DbuserController) Search() {
 		Id: id,
 	}
 	err := dbuser.o.Read(&user)
-	fmt.Println(err, orm.ErrNoRows)
 	if errors.Is(err, orm.ErrNoRows) {
 		dbuser.Ctx.WriteString("查询不到")
 	} else if errors.Is(err, orm.ErrMissPK) {
