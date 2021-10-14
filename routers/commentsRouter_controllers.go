@@ -36,6 +36,24 @@ func init() {
 
     beego.GlobalControllerRouter["beego_study/controllers:DbuserController"] = append(beego.GlobalControllerRouter["beego_study/controllers:DbuserController"],
         beego.ControllerComments{
+            Method: "Search2",
+            Router: "/search2",
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["beego_study/controllers:DbuserController"] = append(beego.GlobalControllerRouter["beego_study/controllers:DbuserController"],
+        beego.ControllerComments{
+            Method: "Search3",
+            Router: "/search3",
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["beego_study/controllers:DbuserController"] = append(beego.GlobalControllerRouter["beego_study/controllers:DbuserController"],
+        beego.ControllerComments{
             Method: "Update",
             Router: "/update",
             AllowHTTPMethods: []string{"post"},

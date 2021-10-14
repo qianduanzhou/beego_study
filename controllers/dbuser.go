@@ -32,6 +32,45 @@ func (dbuser *DbuserController) Search() {
 	}
 }
 
+// @Title search2
+// @Description 查询 QueryTable
+// @Param	id		path 	string	true		"用户的id"
+// @router /search2 [get]
+func (d *DbuserController) Search2() {
+	id, _ := d.GetInt("id")
+	user := models.Dbuser{}
+	qs := d.o.QueryTable(&user)
+	qs.Filter("id", id).One(&user)
+	d.Data["json"] = user
+	d.ServeJSON()
+}
+
+// @Title search3
+// @Description 查询 原生sql
+// @Param	id		path 	string	true		"用户的id"
+// @router /search3 [get]
+func (d *DbuserController) Search3() {
+	id, _ := d.GetInt("id")
+	name := d.GetString("name")
+	user := models.Dbuser{}
+	users := []models.Dbuser{}
+	if err := d.o.Raw("SELECT * FROM dbuser WHERE id = ?", id).QueryRow(&user); err != nil {
+		fmt.Println(err)
+		d.Ctx.WriteString("找不到")
+	} else {
+		d.Data["json"] = user
+		d.ServeJSON()
+	}
+	if num, err := d.o.Raw("SELECT * FROM dbuser WHERE name = ?", name).QueryRows(&users); err != nil {
+		fmt.Println(err)
+		d.Ctx.WriteString("找不到")
+	} else {
+		fmt.Println(users, num)
+		d.Data["json"] = users
+		d.ServeJSON()
+	}
+}
+
 // @Title insert
 // @Description 插入
 // @router /insert [post]

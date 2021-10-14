@@ -1,6 +1,6 @@
 package models
 
 type Dbuser struct {
-	Id   int
+	Id   int    `orm:"pk;auto"`
 	Name string `orm:"size(100)"`
 }
