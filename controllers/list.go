@@ -1,11 +1,20 @@
 package controllers
 
-import beego "github.com/beego/beego/v2/server/web"
+import "fmt"
 
-type listController struct {
-	beego.Controller
+type ListController struct {
+	BaseController
 }
 
-func (l *listController) getList() {
-
+// @Title get
+// @Description 查询列表
+// @router /get [get]
+func (l *ListController) Get() {
+	fmt.Println("ListController")
+	page, limit := GetPageParam(l)
+	fmt.Println(page, limit)
+	data := GetCommonResult(NormalCode, "test", "success")
+	l.Data["json"] = *data
+	fmt.Println(*data)
+	l.ServeJSON()
 }

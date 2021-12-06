@@ -89,4 +89,7 @@ func init() {
 
 	//数据库操作
 	web.AddNamespace(web.NewNamespace("/dbuser", web.NSInclude(&controllers.DbuserController{})))
+
+	//获取列表
+	web.AddNamespace(web.NewNamespace("/list", web.NSInclude(&controllers.ListController{})))
 }

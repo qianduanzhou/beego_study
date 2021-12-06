@@ -1,6 +1,6 @@
 package models
 
 type List struct {
-	Id    string
+	Id    int
 	Title string
 }

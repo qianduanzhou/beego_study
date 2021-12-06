@@ -28,6 +28,7 @@ func (dbuser *DbuserController) Search() {
 		dbuser.Ctx.WriteString("找不到主键")
 	} else {
 		dbuser.Data["json"] = user
+		fmt.Println(user)
 		dbuser.ServeJSON()
 	}
 }

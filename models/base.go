@@ -12,6 +12,7 @@ func init() {
 	orm.RegisterDriver("mysql", orm.DRMySQL)                                                         //使用mysql数据库
 	orm.RegisterDataBase("default", "mysql", "root:123456@tcp(127.0.0.1:3306)/go_test?charset=utf8") //注册mysql（default为数据库别名）
 	orm.RegisterModel(new(Dbuser))                                                                   //设置model
+	orm.RegisterModel(new(List))                                                                     //设置model
 	orm.RunSyncdb("default", false, true)                                                            //根据model创建表
 	O = orm.NewOrm()
 }
