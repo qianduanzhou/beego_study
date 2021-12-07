@@ -44,7 +44,7 @@ func (l *ListController) InsertTestList() {
 		list.Title = fmt.Sprintf("测试标题%d", i)
 		l.o.Insert(&list)
 	}
-	result := GetCommonResult(NormalCode, "插入成功", "success")
+	result := GetCommonResult(NormalCode, nil, "success")
 	l.Data["json"] = result
 	l.ServeJSON()
 }

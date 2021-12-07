@@ -45,9 +45,10 @@ func newCommonResult(code int, data interface{}, msg string) *CommonResult {
 
 func GetCommonResult(code int, data interface{}, msg string) map[string]interface{} {
 	common := newCommonResult(code, data, msg)
-	var result = make(map[string]interface{})
-	result["code"] = common.code
-	result["data"] = common.data
-	result["msg"] = common.msg
+	result := map[string]interface{}{
+		"code": common.code,
+		"data": common.data,
+		"msg":  common.msg,
+	}
 	return result
 }
