@@ -32,7 +32,7 @@ func (l *ListController) Get() {
 	result := GetCommonResult(NormalCode, data, "success")
 	l.Data["json"] = result
 
-	time.Sleep(2 * time.Second)
+	time.Sleep(1 * time.Second)
 	l.ServeJSON()
 }
 
@@ -47,6 +47,16 @@ func (l *ListController) InsertTestList() {
 		list.Title = fmt.Sprintf("测试标题%d", i)
 		l.o.Insert(&list)
 	}
+	result := GetCommonResult(NormalCode, nil, "success")
+	l.Data["json"] = result
+	l.ServeJSON()
+}
+
+// @Title 删除测试列表
+// @Description 删除测试列表的数据
+// @router /delTestList [post]
+func (l *ListController) DelTestList() {
+	l.o.Raw("DELETE FROM list").Exec()
 	result := GetCommonResult(NormalCode, nil, "success")
 	l.Data["json"] = result
 	l.ServeJSON()

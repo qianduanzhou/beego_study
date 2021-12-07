@@ -72,6 +72,15 @@ func init() {
 
     beego.GlobalControllerRouter["beego_study/controllers:ListController"] = append(beego.GlobalControllerRouter["beego_study/controllers:ListController"],
         beego.ControllerComments{
+            Method: "DelTestList",
+            Router: "/delTestList",
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["beego_study/controllers:ListController"] = append(beego.GlobalControllerRouter["beego_study/controllers:ListController"],
+        beego.ControllerComments{
             Method: "Get",
             Router: "/get",
             AllowHTTPMethods: []string{"get"},
