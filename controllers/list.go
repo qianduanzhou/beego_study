@@ -3,6 +3,7 @@ package controllers
 import (
 	"beego_study/models"
 	"fmt"
+	"time"
 )
 
 type ListController struct {
@@ -30,6 +31,8 @@ func (l *ListController) Get() {
 	}
 	result := GetCommonResult(NormalCode, data, "success")
 	l.Data["json"] = result
+
+	time.Sleep(2 * time.Second)
 	l.ServeJSON()
 }
 
