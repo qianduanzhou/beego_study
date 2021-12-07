@@ -9,7 +9,7 @@ type ListController struct {
 	BaseController
 }
 
-// @Title get
+// @Title 获取列表
 // @Description 查询列表
 // @router /get [get]
 func (l *ListController) Get() {
@@ -29,6 +29,22 @@ func (l *ListController) Get() {
 		"totalCount": count,
 	}
 	result := GetCommonResult(NormalCode, data, "success")
+	l.Data["json"] = result
+	l.ServeJSON()
+}
+
+// @Title 插入测试列表
+// @Description 插入列表，提供测试数据
+// @router /insertTestList [post]
+func (l *ListController) InsertTestList() {
+	n, _ := l.GetInt("num")
+	list := models.List{}
+	for i := 1; i <= n; i++ {
+		list.Id = i
+		list.Title = fmt.Sprintf("测试标题%d", i)
+		l.o.Insert(&list)
+	}
+	result := GetCommonResult(NormalCode, "插入成功", "success")
 	l.Data["json"] = result
 	l.ServeJSON()
 }
