@@ -10,6 +10,7 @@ services:
     network_mode: "test-net"
     depends_on:
       - mysql
+    restart: always
   mysql:
     build: ./docker/mysql
     container_name: "mydb_test"
@@ -18,4 +19,4 @@ services:
       MYSQL_ROOT_PASSWORD: 123456 #你的root密码
       MYSQL_ROOT_HOST: "%"
     ports: 
-     - "3306:3306"
+     - "3307:3306"
