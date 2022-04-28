@@ -1,13 +1,14 @@
 FROM golang:latest
- 
+#定义基础路径
+env GO_PATH /go/src/go_test
 #创建工作目录
-RUN mkdir -p /go/src/go_test
+RUN mkdir -p $GO_PATH
  
 #进入工作目录
-WORKDIR /go/src/go_test
+WORKDIR $GO_PATH
  
 #将当前目录下的所有文件复制到指定位置
-COPY . /go/src/go_test
+COPY . $GO_PATH
  
 #端口
 EXPOSE 8080
