@@ -19,7 +19,7 @@ func init() {
 	/*基础路由*/
 	//基本 GET 路由
 	web.Get("/", func(ctx *context.Context) {
-		ctx.Output.Body([]byte("hello world!!!"))
+		ctx.Output.Body([]byte("hello world"))
 	})
 	//基本 POST 路由
 	web.Post("/alice", func(ctx *context.Context) {
