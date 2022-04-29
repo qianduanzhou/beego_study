@@ -9,15 +9,20 @@ RUN mkdir -p $GO_PATH
 #进入工作目录
 WORKDIR $GO_PATH
  
+#安装netcat wait-for依赖nc命令
+RUN apt-get -q update
+RUN apt-get -qy install netcat
+
 #将当前目录下的所有文件复制到指定位置
 COPY . $GO_PATH
- 
+
+# #复制等待sh
+COPY ./docker/sh/wait-for-it $GO_PATH
+#给予等待sh权限
+RUN chmod 777 ./wait-for-it
+
+#给予build之后的可执行文件权限
+RUN chmod 777 ./beego_test
+
 #端口
 EXPOSE 8080
-
-#给予权限
-RUN chmod 777 ./beego_test
-RUN chmod 777 /entrypoint.sh
-
-#执行
-ENTRYPOINT ["./beego_test"]

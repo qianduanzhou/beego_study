@@ -10,9 +10,7 @@ services:
     network_mode: "test-net"
     depends_on:
       - mysql
-    volumes:
-    - "./docker/sh/entrypoint.sh:/entrypoint.sh"
-    entrypoint: /entrypoint.sh -d mysql:3307 -c 'echo "start web service here"';
+    command: ["./wait-for-it", "mysql:3307", "--", "./beego_test"]
   mysql:
     build: ./docker/mysql
     container_name: "mydb_test"
@@ -22,3 +20,4 @@ services:
       MYSQL_ROOT_HOST: "%"
     ports: 
      - "3307:3306"
+    # command: nc -lk 0.0.0.0 3306
