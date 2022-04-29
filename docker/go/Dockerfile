@@ -17,7 +17,7 @@ EXPOSE 8080
 
 #给予权限
 RUN chmod 777 ./beego_test
-RUN chmod 777 ./entrypoint.sh
+RUN chmod 777 /entrypoint.sh
 
 #执行
 ENTRYPOINT ["./beego_test"]
