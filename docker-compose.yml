@@ -10,7 +10,7 @@ services:
     network_mode: "test-net"
     depends_on:
       - mysql
-    command: ["./wait-for-it", "mysql:3307", "--", "./beego_test"]
+    command: ["./wait-for-it", "-t", "30", "mysql:3307", "--", "./beego_test"]
   mysql:
     build: ./docker/mysql
     container_name: "mydb_test"
