@@ -20,4 +20,3 @@ services:
       MYSQL_ROOT_HOST: "%"
     ports: 
      - "3307:3306"
-    # command: nc -lk 0.0.0.0 3306
