@@ -10,7 +10,9 @@ services:
     network_mode: "test-net"
     depends_on:
       - mysql
-    restart: always
+    volumes:
+    - "./docker/sh/entrypoint.sh:/entrypoint.sh"
+    entrypoint: /entrypoint.sh -d mysql:3307 -c 'echo "start web service here"';
   mysql:
     build: ./docker/mysql
     container_name: "mydb_test"
