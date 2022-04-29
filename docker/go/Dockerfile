@@ -10,6 +10,7 @@ RUN mkdir -p $GO_PATH
 WORKDIR $GO_PATH
  
 #安装netcat wait-for依赖nc命令
+RUN sed -i s@/deb.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list
 RUN apt-get -q update
 RUN apt-get -qy install netcat
 
