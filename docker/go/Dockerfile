@@ -13,5 +13,7 @@ COPY . $GO_PATH
 #端口
 EXPOSE 8080
 
-RUN chmod 777 ./beego_test
+RUN chmod a+x ./beego_test
+RUN chmod a+x ./docker/sh/entrypoint.sh
+
 ENTRYPOINT ["./beego_test"]
