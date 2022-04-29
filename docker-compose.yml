@@ -10,6 +10,7 @@ services:
     network_mode: "test-net"
     depends_on:
       - mysql
+    restart: on-failure
     command: ["./wait-for-it", "-t", "30", "mysql:3307", "--", "./beego_test"]
   mysql:
     build: ./docker/mysql
