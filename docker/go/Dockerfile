@@ -1,6 +1,8 @@
 FROM golang:latest
+
 #定义基础路径
-env GO_PATH /go/src/go_test
+ENV GO_PATH /go/src/go_test
+
 #创建工作目录
 RUN mkdir -p $GO_PATH
  
@@ -13,7 +15,9 @@ COPY . $GO_PATH
 #端口
 EXPOSE 8080
 
-RUN chmod a+x ./beego_test
-RUN chmod a+x ./docker/sh/entrypoint.sh
+#给与权限
+RUN chmod 777 ./beego_test
+RUN chmod 777 ./docker/sh/entrypoint.sh
 
+#执行
 ENTRYPOINT ["./beego_test"]
